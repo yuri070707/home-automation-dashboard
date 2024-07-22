@@ -1,0 +1,32 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1em;
+    justify-content: space-around;
+}
+.card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 1em;
+    padding: 2em;
+    width: 200px;
+    text-align: center;
+}
+footer {
+    background: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
