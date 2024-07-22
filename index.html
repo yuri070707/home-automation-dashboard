@@ -9,18 +9,19 @@
 <body>
     <div class="container">
         <h1>Home Automation Dashboard</h1>
-        <div class="card">
-            <h2>Temperature</h2>
-            <p id="temperature">--°C</p>
+        <div class="data-card">
+            <div id="temperature">--°C</div>
+            <div>Temperature</div>
         </div>
-        <div class="card">
-            <h2>Humidity</h2>
-            <p id="humidity">--%</p>
+        <div class="data-card">
+            <div id="humidity">--%</div>
+            <div>Humidity</div>
         </div>
         <div class="input-card">
-            <h2>Send Data</h2>
-            <input type="text" id="temperatureInput" placeholder="Enter temperature">
-            <input type="text" id="humidityInput" placeholder="Enter humidity">
+            <label for="temperatureInput">Enter Temperature</label>
+            <input type="number" id="temperatureInput" placeholder="Enter temperature">
+            <label for="humidityInput">Enter Humidity</label>
+            <input type="number" id="humidityInput" placeholder="Enter humidity">
             <button id="sendData">Send Data</button>
         </div>
     </div>

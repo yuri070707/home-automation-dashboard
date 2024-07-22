@@ -1,19 +1,50 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+// Fetch the latest data from the backend and update the UI
+async function fetchData() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/data/latest');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        console.log('Fetched data:', data);  // ここで取得したデータをログに表示
+        document.getElementById('temperature').textContent = data.temperature.toFixed(2) + '°C';
+        document.getElementById('humidity').textContent = data.humidity.toFixed(2) + '%';
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
 
-app = Flask(__name__)
-CORS(app)  # これにより、すべてのオリジンからのリクエストが許可されます
+// Send the data to the backend
+document.addEventListener('DOMContentLoaded', function() {
+    const temperatureElement = document.getElementById('temperatureInput');
+    const humidityElement = document.getElementById('humidityInput');
+    const sendButton = document.getElementById('sendData');
 
-@app.route('/api/data/latest', methods=['GET'])
-def get_latest_data():
-    data = {"temperature": 25.0, "humidity": 50.0}
-    return jsonify(data)
+    sendButton.addEventListener('click', async function() {
+        const temperature = parseFloat(temperatureElement.value);
+        const humidity = parseFloat(humidityElement.value);
 
-@app.route('/api/data', methods=['POST'])
-def post_data():
-    data = request.json
-    print("Received data:", data)
-    return jsonify({"status": "success"}), 200
+        try {
+            console.log('Sending data:', { temperature, humidity });  // ここで送信するデータをログに表示
+            const response = await fetch('http://127.0.0.1:5000/api/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ temperature, humidity })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log('Success:', data);  // 成功時のレスポンスをログに表示
+            fetchData(); // Update the displayed data
+        } catch (error) {
+            console.error('Error:', error);  // エラー時のメッセージをログに表示
+        }
+    });
+});
 
-if __name__ == '__main__':
-    app.run(debug=True)
+// Fetch the latest data every 60 seconds
+setInterval(fetchData, 60000);
+fetchData();
