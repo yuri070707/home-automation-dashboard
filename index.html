@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>Home Automation Dashboard</h1>
-    </header>
-    <main>
         <div class="card">
             <h2>Temperature</h2>
             <p id="temperature">--°C</p>
@@ -19,10 +17,13 @@
             <h2>Humidity</h2>
             <p id="humidity">--%</p>
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 Yuri Inoue. All rights reserved.</p>
-    </footer>
+        <div class="input-card">
+            <h2>Send Data</h2>
+            <input type="text" id="temperatureInput" placeholder="Enter temperature">
+            <input type="text" id="humidityInput" placeholder="Enter humidity">
+            <button id="sendData">Send Data</button>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
