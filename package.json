@@ -1,0 +1,12 @@
+{
+    "name": "home-automation-dashboard",
+    "version": "1.0.0",
+    "description": "A simple home automation dashboard",
+    "main": "index.js",
+    "scripts": {
+        "start": "serve -s public"
+    },
+    "dependencies": {
+        "serve": "^11.3.2"
+    }
+}
