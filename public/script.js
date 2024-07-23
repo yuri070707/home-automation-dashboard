@@ -1,13 +1,14 @@
 // Fetch the latest data from the backend and update the UI
 async function fetchData() {
     try {
-        const response = await fetch('https://home-automation-dashboard-2fu8nd2lu-yuri070707s-projects.vercel.app/api/data/latest');
+        const response = await fetch('https://home-automation-dashboard-fv0izy93j-yuri070707s-projects.vercel.app/api/data/latest');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        document.getElementById('temperature').textContent = `Temperature: ${data.temperature.toFixed(2)}°C`;
-        document.getElementById('humidity').textContent = `Humidity: ${data.humidity.toFixed(2)}%`;
+        console.log('Fetched data:', data);  // ここで取得したデータをログに表示
+        document.getElementById('temperature').textContent = data.temperature.toFixed(2) + '°C';
+        document.getElementById('humidity').textContent = data.humidity.toFixed(2) + '%';
     } catch (error) {
         console.error('Fetch error:', error);
     }
@@ -24,8 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const humidity = parseFloat(humidityElement.value);
 
         try {
-            console.log('Sending data:', { temperature, humidity });
-            const response = await fetch('https://home-automation-dashboard-2fu8nd2lu-yuri070707s-projects.vercel.app/api/data', {
+            console.log('Sending data:', { temperature, humidity });  // ここで送信するデータをログに表示
+            const response = await fetch('https://home-automation-dashboard-fv0izy93j-yuri070707s-projects.vercel.app/api/data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,10 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log('Success:', data);
+            console.log('Success:', data);  // 成功時のレスポンスをログに表示
             fetchData(); // Update the displayed data
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error);  // エラー時のメッセージをログに表示
         }
     });
 });

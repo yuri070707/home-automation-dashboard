@@ -9,11 +9,15 @@
 <body>
     <div class="container">
         <h1>Home Automation Dashboard</h1>
-        <div id="temperature" class="data-display">Temperature: --°C</div>
-        <div id="humidity" class="data-display">Humidity: --%</div>
-        <input id="temperatureInput" type="number" placeholder="Enter Temperature">
-        <input id="humidityInput" type="number" placeholder="Enter Humidity">
-        <button id="sendData">Send Data</button>
+        <div class="data-display">
+            <p>Temperature: <span id="temperature">--°C</span></p>
+            <p>Humidity: <span id="humidity">--%</span></p>
+        </div>
+        <div>
+            <input type="text" id="temperatureInput" placeholder="Enter Temperature">
+            <input type="text" id="humidityInput" placeholder="Enter Humidity">
+            <button id="sendData">Send Data</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
