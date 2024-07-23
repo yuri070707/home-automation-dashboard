@@ -8,6 +8,10 @@
       {
         "src": "public/**/*",
         "use": "@vercel/static-build"
+      },
+      {
+        "src": "build.sh",
+        "use": "@vercel/static-build"
       }
     ],
     "routes": [
